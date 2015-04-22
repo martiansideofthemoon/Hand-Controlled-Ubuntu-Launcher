@@ -19,19 +19,9 @@ while(True):
     	area=cv2.contourArea(i)
     	if area>1000:
     		cnt=i
-    if abs(areaglobal-cv2.contourArea(cnt))>5500 :
-        print cv2.contourArea(cnt)
-        print cv2.arcLength(cnt,True)
-        areaglobal=cv2.contourArea(cnt)
-        perimeter=cv2.arcLength(cnt,True)
     #cv2.drawContours(frame, [cnt], 0, (255,0,0), 2)
     approx=cv2.convexHull(cnt,returnPoints=False)
     defects=cv2.convexityDefects(cnt,approx)
-    #print defects
-    if len(approx)!=oldlen:
-        #print len(approx)
-        oldlen=len(approx)
-    print len(range(defects.shape[0]))
     for i in range(defects.shape[0]):
         s,e,f,d = defects[i,0]
         start = tuple(cnt[s][0])
@@ -42,10 +32,10 @@ while(True):
     #cv2.polylines(frame,[approx],True,(255,0,0))
     #cv2.imshow('frame',thresh)
     cv2.imshow('image',frame)
-    cv2.imshow('thresh',thresh2)
+    #cv2.imshow('thresh',thresh2)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
-    	
+    	print defects;
     	break
 
 # When everything done, release the capture

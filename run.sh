@@ -1,4 +1,3 @@
-
 var=$(gsettings get com.canonical.Unity.Launcher favorites)
 let counter=-1
 declare -a ARRAY
