@@ -1,3 +1,6 @@
+var3=$(python image_process.py)
+let var3=var3-1
+
 var=$(gsettings get com.canonical.Unity.Launcher favorites)
 let counter=-1
 declare -a ARRAY
@@ -19,6 +22,7 @@ for i in $var; do
 	fi	
 done 
 cd /
-
-`grep '^Exec' /usr/share/applications/${ARRAY[$1]} | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` & 
+echo $var3
+echo ${ARRAY[var3]}
+`grep '^Exec' /usr/share/applications/${ARRAY[var3]} | tail -1 | sed 's/^Exec=//' | sed 's/%.//'` & 
 #echo $var
