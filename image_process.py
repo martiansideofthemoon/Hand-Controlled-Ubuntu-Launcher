@@ -33,12 +33,12 @@ while(True):
     count=0;
     for i in range(defects.shape[0]):
         s,e,f,d = defects[i,0]
-        if d>1000:
+        if d>10000:
             start = tuple(cnt[s][0])
             end = tuple(cnt[e][0])
             far = tuple(cnt[f][0])
             angleRad=angle(start,end,far)
-            if angleRad<(3.14/4):
+            if angleRad<(3.14/3):
                 count=count+1
                 cv2.line(frame,start,end,[0,255,0],2)
                 cv2.circle(frame,end,5,[0,0,255],-1)
@@ -51,6 +51,7 @@ while(True):
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         count=count+1;
+        print defects;
         print count;
     	break
 
