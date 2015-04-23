@@ -1,7 +1,8 @@
 import numpy as np
 import math
 import cv2
-
+#Start by checking hand profile
+#THink about 1
 cap = cv2.VideoCapture(0)
 areaglobal=0
 oldlen=0
