@@ -1,6 +1,6 @@
+let var3=10
 var3=$(python image_process.py)
 let var3=var3-1
-
 var=$(gsettings get com.canonical.Unity.Launcher favorites)
 let counter=-1
 declare -a ARRAY

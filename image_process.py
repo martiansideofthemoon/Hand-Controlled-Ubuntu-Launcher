@@ -11,7 +11,8 @@ def angle(start,end,apex):
     len1=math.sqrt((start[0]-apex[0])*(start[0]-apex[0])+(start[1]-apex[1])*(start[1]-apex[1]))
     len2=math.sqrt((end[0]-apex[0])*(end[0]-apex[0])+(end[1]-apex[1])*(end[1]-apex[1]))
     return math.acos(dotProd/(len1*len2))
-
+def distance(start,end):
+    return math.sqrt((start[0]-end[0])*(start[0]-end[0])+(start[1]-end[1])*(start[1]-end[1]))
 
 while(True):
     # Capture frame-by-frame
@@ -31,6 +32,11 @@ while(True):
     approx=cv2.convexHull(cnt,returnPoints=False)
     defects=cv2.convexityDefects(cnt,approx)
     count=0;
+    angles=[]
+    depthA=[]
+    startA=[]
+    endA=[]
+    apexA=[]
     for i in range(defects.shape[0]):
         s,e,f,d = defects[i,0]
         if d>10000:
@@ -40,6 +46,11 @@ while(True):
             angleRad=angle(start,end,far)
             if angleRad<(3.14/3):
                 count=count+1
+                depthA.append(d)
+                angles.append(angleRad)
+                endA.append(end)
+                apexA.append(far)
+                startA.append(start)
                 cv2.line(frame,start,end,[0,255,0],2)
                 cv2.circle(frame,end,5,[0,0,255],-1)
                 cv2.circle(frame,start,5,[0,0,255],-1)
@@ -47,11 +58,16 @@ while(True):
     #cv2.polylines(frame,[approx],True,(255,0,0))
     #cv2.imshow('frame',thresh)
     cv2.imshow('image',frame)
-    cv2.imshow('thresh',thresh2)
-
+    #cv2.imshow('thresh',thresh2)
+    average=0.0
     if cv2.waitKey(1) & 0xFF == ord('q'):
+        for i in range(len(startA)):
+            d=distance(startA[i],endA[i])
+            #print d
+            average+=d
+        #d=d/len()
         count=count+1;
-        print defects;
+        #print defects;
         print count;
     	break
 
