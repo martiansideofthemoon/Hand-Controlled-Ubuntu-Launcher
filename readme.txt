@@ -1,0 +1,2 @@
+This file will describe how to use this utility.
+Run the run.sh file by typing ./run.sh in the terminal window. Make sure it is an executable. Make sure a dot is present on all your finger tips and no where else. Press q to open the corresponding application.
