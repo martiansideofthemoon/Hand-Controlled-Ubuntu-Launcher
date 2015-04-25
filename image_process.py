@@ -59,7 +59,7 @@ while(True):
     #cv2.polylines(frame,[approx],True,(255,0,0))
     #cv2.imshow('frame',thresh)
     cv2.imshow('image',frame)
-    #cv2.imshow('thresh',thresh2)
+    cv2.imshow('thresh',thresh2)
     average=0.0
     if cv2.waitKey(1) & 0xFF == ord('q'):
         for i in range(len(startA)):
